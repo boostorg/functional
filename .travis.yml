@@ -12,16 +12,12 @@ matrix:
     include:
       - compiler: gcc
         env: |
-            USER_CONFIG="using gcc : : g++-4.8 -Werror --std=c++03 ;"
-      - compiler: gcc
-        env: |
-            USER_CONFIG="using gcc : : g++-4.8 -Werror --std=c++11 ;"
+            USER_CONFIG="using gcc : : g++-4.8 -Werror ;"
+            CXXSTD=03,11
       - compiler: clang
         env: |
-            USER_CONFIG="using clang : : clang++ -Werror --std=c++03 ;"
-      - compiler: clang
-        env: |
-            USER_CONFIG="using clang : : clang++ -Werror --std=c++11 ;"
+            USER_CONFIG="using clang : : clang++ -Werror ;"
+            CXXSTD=03,11
       - compiler: clang
         env: |
             USER_CONFIG="using clang : : clang++ -Werror --std=c++11 -D_HAS_AUTO_PTR_ETC=0 ;"
@@ -68,10 +64,10 @@ before_script:
 
 script:
     - cd ${TRAVIS_BUILD_DIR}/test
-    - ${HOME}/opt/bin/b2 -q ${${HOME}/opt/bin/b2_TOOLSET} include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
+    - ${HOME}/opt/bin/b2 cxxstd=$CXXSTD -q ${${HOME}/opt/bin/b2_TOOLSET} include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
     - cd ${TRAVIS_BUILD_DIR}/forward/test
-    - ${HOME}/opt/bin/b2 -q ${${HOME}/opt/bin/b2_TOOLSET} include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
+    - ${HOME}/opt/bin/b2 cxxstd=$CXXSTD -q ${${HOME}/opt/bin/b2_TOOLSET} include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
     - cd ${TRAVIS_BUILD_DIR}/factory/test
-    - ${HOME}/opt/bin/b2 -q ${${HOME}/opt/bin/b2_TOOLSET} include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
+    - ${HOME}/opt/bin/b2 cxxstd=$CXXSTD -q ${${HOME}/opt/bin/b2_TOOLSET} include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
     - cd ${TRAVIS_BUILD_DIR}/overloaded_function/test
-    - ${HOME}/opt/bin/b2 -q ${${HOME}/opt/bin/b2_TOOLSET} include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
+    - ${HOME}/opt/bin/b2 cxxstd=$CXXSTD -q ${${HOME}/opt/bin/b2_TOOLSET} include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
