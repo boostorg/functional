@@ -8,11 +8,6 @@ dist: trusty
 
 language: c++
 
-addons:
-    apt:
-        packages:
-            - libboost-tools-dev
-
 matrix:
     include:
       - compiler: gcc
@@ -66,13 +61,17 @@ before_script:
         mv * ${BOOST_ROOT}
     - rm ${BOOST_ROOT}/boost/functional.hpp
     - find ${BOOST_ROOT}/boost/functional -type f | grep -v hash | xargs -r rm
+    - cd ${BOOST_ROOT}/tools/build
+    - mkdir ${HOME}/opt
+    - ./bootstrap.sh
+    - ./b2 install --prefix=$HOME/opt
 
 script:
     - cd ${TRAVIS_BUILD_DIR}/test
-    - bjam -q ${BJAM_TOOLSET} include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
+    - ${HOME}/opt/bin/b2 -q ${${HOME}/opt/bin/b2_TOOLSET} include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
     - cd ${TRAVIS_BUILD_DIR}/forward/test
-    - bjam -q ${BJAM_TOOLSET} include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
+    - ${HOME}/opt/bin/b2 -q ${${HOME}/opt/bin/b2_TOOLSET} include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
     - cd ${TRAVIS_BUILD_DIR}/factory/test
-    - bjam -q ${BJAM_TOOLSET} include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
+    - ${HOME}/opt/bin/b2 -q ${${HOME}/opt/bin/b2_TOOLSET} include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
     - cd ${TRAVIS_BUILD_DIR}/overloaded_function/test
-    - bjam -q ${BJAM_TOOLSET} include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
+    - ${HOME}/opt/bin/b2 -q ${${HOME}/opt/bin/b2_TOOLSET} include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
