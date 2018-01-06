@@ -65,10 +65,10 @@ before_script:
 
 script:
     - cd ${TRAVIS_BUILD_DIR}/test
-    - ${HOME}/opt/bin/b2 cxxstd=$CXXSTD -q include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
+    - ${HOME}/opt/bin/b2 -j 3 cxxstd=$CXXSTD -q include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
     - cd ${TRAVIS_BUILD_DIR}/forward/test
-    - ${HOME}/opt/bin/b2 cxxstd=$CXXSTD -q include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
+    - ${HOME}/opt/bin/b2 -j 3 cxxstd=$CXXSTD -q include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
     - cd ${TRAVIS_BUILD_DIR}/factory/test
-    - ${HOME}/opt/bin/b2 cxxstd=$CXXSTD -q include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
+    - ${HOME}/opt/bin/b2 -j 3 cxxstd=$CXXSTD -q include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
     - cd ${TRAVIS_BUILD_DIR}/overloaded_function/test
-    - ${HOME}/opt/bin/b2 cxxstd=$CXXSTD -q include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
+    - ${HOME}/opt/bin/b2 -j 3 cxxstd=$CXXSTD -q include=${BOOST_ROOT} include=${TRAVIS_BUILD_DIR}/include
