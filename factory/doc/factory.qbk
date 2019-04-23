@@ -29,9 +29,9 @@
 
 [def __std__map__ [@https://boost.org/sgi/stl/Map.html `std::map`]]
 [def __std__string__ [@https://boost.org/sgi/stl/basic_string.html `std::string`]]
-[def __allocator__ [@https://en.cppreference.com/w/cpp/named_req/Allocator Allocator]]
-[def __std_allocator__ [@https://en.cppreference.com/w/cpp/named_req/Allocator Allocator]]
-[def __std_allocators__ [@https://en.cppreference.com/w/cpp/named_req/Allocator Allocators]]
+[def __allocator__ [@https://www.boost.org/sgi/stl/Allocators.html Allocator]]
+[def __std_allocator__ [@https://www.boost.org/sgi/stl/Allocators.html Allocator]]
+[def __std_allocators__ [@https://www.boost.org/sgi/stl/Allocators.html Allocators]]
 
 [def __boost__ptr_map__ [@http://www.boost.org/libs/ptr_container/doc/ptr_map.html `boost::ptr_map`]]
 
