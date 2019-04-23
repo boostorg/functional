@@ -27,11 +27,11 @@
 [def __smart_pointers__ [@http://www.boost.org/libs/smart_ptr/index.html Smart Pointers]]
 [def __boost__shared_ptr__ [@http://www.boost.org/libs/smart_ptr/shared_ptr.htm `boost::shared_ptr`]]
 
-[def __std__map__ [@http://www.sgi.com/tech/stl/map.html `std::map`]]
-[def __std__string__ [@http://www.sgi.com/tech/stl/string.html `std::string`]]
-[def __allocator__ [@http://www.sgi.com/tech/stl/concepts/allocator.html Allocator]]
-[def __std_allocator__ [@http://www.sgi.com/tech/stl/concepts/allocator.html Allocator]]
-[def __std_allocators__ [@http://www.sgi.com/tech/stl/concepts/allocator.html Allocators]]
+[def __std__map__ [@https://boost.org/sgi/stl/Map.html `std::map`]]
+[def __std__string__ [@https://boost.org/sgi/stl/basic_string.html `std::string`]]
+[def __allocator__ [@https://en.cppreference.com/w/cpp/named_req/Allocator Allocator]]
+[def __std_allocator__ [@https://en.cppreference.com/w/cpp/named_req/Allocator Allocator]]
+[def __std_allocators__ [@https://en.cppreference.com/w/cpp/named_req/Allocator Allocators]]
 
 [def __boost__ptr_map__ [@http://www.boost.org/libs/ptr_container/doc/ptr_map.html `boost::ptr_map`]]
 
@@ -385,7 +385,7 @@ details and their evolution.
 # [@http://en.wikipedia.org/wiki/Design_Patterns Design Patterns],
   Gamma et al. - Addison Wesley Publishing, 1995
 
-# [@http://www.sgi.com/tech/stl/ Standard Template Library Programmer's Guide], 
+# [@https://boost.org/sgi/stl/ Standard Template Library Programmer's Guide], 
   Hewlett-Packard Company, 1994
 
 # [@http://www.boost.org/libs/bind/bind.html Boost.Bind], 
