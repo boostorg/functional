@@ -1,8 +1,9 @@
 [library Boost.Functional/Factory
   [quickbook 1.3]
   [version 1.0]
-  [authors [Schwinger, Tobias]]
+  [authors [Schwinger, Tobias], [Fernandes, Glen]]
   [copyright 2007 2008 Tobias Schwinger]
+  [copyright 2019 Glen Joseph Fernandes]
   [license
         Distributed under the Boost Software License, Version 1.0.
         (See accompanying file LICENSE_1_0.txt or copy at 
@@ -54,9 +55,10 @@ invocation without `new`.
     __boost__value_factory__<T>()(arg1,arg2,arg3)
     // same as T(arg1,arg2,arg3)
 
-For technical reasons the arguments to the function objects have to be
-LValues. A factory that also accepts RValues can be composed using the
-__boost__forward_adapter__ or __boost__bind__.
+Before C++11 the arguments to the function objects have to be LValues. A
+factory that also accepts RValues can be composed using the
+__boost__forward_adapter__ or __boost__bind__. In C++11 or higher the
+arguments can be LValues or RValues.
 
 [endsect]
 
@@ -259,7 +261,7 @@ Function object template that invokes the constructor of the type `T`.
 
 [variablelist Notation
     [[`T`]         [an arbitrary type with at least one public constructor]]
-    [[`a0`...`aN`] [argument LValues to a constructor of `T`]]
+    [[`a0`...`aN`] [argument values to a constructor of `T`]]
     [[`F`]         [the type `value_factory<F>`]]
     [[`f`]         [an instance object of `F`]]
 ]
@@ -276,8 +278,8 @@ Function object template that invokes the constructor of the type `T`.
 
 [heading Limits]
 
-The macro BOOST_FUNCTIONAL_VALUE_FACTORY_MAX_ARITY can be defined to set the
-maximum arity. It defaults to 10.
+Before C++11, the maximum number of arguments supported is 10. Since C++11 an
+arbitrary number of arguments is supported.
 
 [endsect]
 
@@ -326,7 +328,7 @@ separately allocated reference counter).
 [variablelist Notation
     [[`T`]         [an arbitrary type with at least one public constructor]]
     [[`P`]         [pointer or smart pointer to `T`]]
-    [[`a0`...`aN`] [argument LValues to a constructor of `T`]]
+    [[`a0`...`aN`] [argument values to a constructor of `T`]]
     [[`F`]         [the type `factory<P>`]]
     [[`f`]         [an instance object of `F`]]
 ]
@@ -344,14 +346,33 @@ separately allocated reference counter).
 
 [heading Limits]
 
-The macro BOOST_FUNCTIONAL_FACTORY_MAX_ARITY can be defined to set the
-maximum arity. It defaults to 10.
+Before C++11, the maximum number of arguments supported is 10. Since C++11 an
+arbitrary number of arguments is supported.
 
 [endsect]
 
 [endsect]
 
 [section Changes]
+
+[heading Boost 1.72.0]
+
+Glen Fernandes rewrote the implementations of `factory` and `value_factory` to
+provide the following features:
+
+* Support r-value arguments when available
+* Support arbitrary number of arguments via variadic templates when available
+* Support allocators that are final
+* Support allocators that use fancy pointers
+* Support for disabled exceptions (`BOOST_NO_EXCEPTIONS`)
+* Improved compilation times
+
+The following features have been removed:
+
+* Increasing limits for C++03 compilers through
+  `BOOST_FUNCTIONAL_VALUE_FACTORY_MAX_ARITY`
+* Using `boost::none_t` in place of `void` through
+  `BOOST_FUNCTIONAL_FACTORY_SUPPORT_NONE_T`
 
 [heading Boost 1.58.0]
 

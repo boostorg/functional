@@ -1,6 +1,4 @@
 /*
-Copyright 2007 Tobias Schwinger
-
 Copyright 2019 Glen Joseph Fernandes
 (glenjofe@gmail.com)
 
@@ -11,17 +9,12 @@ Distributed under the Boost Software License, Version 1.0.
 #include <boost/core/lightweight_test.hpp>
 #include <boost/shared_ptr.hpp>
 
-class sum  {
-public:
-    sum(int a, int b)
-        : value_(a + b) { }
-
-    int get() const {
-        return value_;
+struct type {
+    explicit type(bool b) {
+        if (b) {
+            throw true;
+        }
     }
-
-private:
-    int value_;
 };
 
 template<class T>
@@ -72,24 +65,21 @@ operator!=(const creator<T>&, const creator<U>&)
 
 int main()
 {
-    int a = 1;
-    int b = 2;
-    {
-        boost::shared_ptr<sum> s(boost::factory<boost::shared_ptr<sum>,
+    bool b = true;
+    try {
+        boost::shared_ptr<type> s(boost::factory<boost::shared_ptr<type>,
             creator<void>,
-            boost::factory_alloc_for_pointee_and_deleter>()(a, b));
-        BOOST_TEST(creator<sum>::count == 1);
-        BOOST_TEST(s->get() == 3);
+            boost::factory_alloc_for_pointee_and_deleter>()(b));
+    } catch (...) {
+        BOOST_TEST(creator<type>::count == 0);
     }
-    BOOST_TEST(creator<sum>::count == 0);
-    {
-        boost::shared_ptr<sum> s(boost::factory<boost::shared_ptr<sum>,
+    try {
+        boost::shared_ptr<type> s(boost::factory<boost::shared_ptr<type>,
             creator<void>,
-            boost::factory_passes_alloc_to_smart_pointer>()(a, b));
-        BOOST_TEST(creator<sum>::count == 1);
-        BOOST_TEST(s->get() == 3);
+            boost::factory_passes_alloc_to_smart_pointer>()(b));
+    } catch (...) {
+        BOOST_TEST(creator<type>::count == 0);
     }
-    BOOST_TEST(creator<sum>::count == 0);
     return boost::report_errors();
 }
 
