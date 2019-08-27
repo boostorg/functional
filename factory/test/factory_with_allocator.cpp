@@ -9,7 +9,7 @@ Distributed under the Boost Software License, Version 1.0.
 */
 #include <boost/functional/factory.hpp>
 #include <boost/core/lightweight_test.hpp>
-#include <boost/shared_ptr.hpp>
+#include <boost/smart_ptr/shared_ptr.hpp>
 
 class sum  {
 public:
