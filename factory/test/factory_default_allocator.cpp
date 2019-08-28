@@ -1,7 +1,4 @@
 /*
-Copyright 2007 Tobias Schwinger
-Copyright 2017 Daniel James
-
 Copyright 2019 Glen Joseph Fernandes
 (glenjofe@gmail.com)
 
@@ -9,9 +6,22 @@ Distributed under the Boost Software License, Version 1.0.
 (http://www.boost.org/LICENSE_1_0.txt)
 */
 #include <boost/functional/factory.hpp>
+#include <boost/core/default_allocator.hpp>
 #include <boost/core/lightweight_test.hpp>
 #include <boost/smart_ptr/shared_ptr.hpp>
-#include <memory>
+#include <boost/config.hpp>
+#include <exception>
+
+#if defined(BOOST_NO_EXCEPTIONS)
+namespace boost {
+
+BOOST_NORETURN void throw_exception(const std::exception&)
+{
+    std::terminate();
+}
+
+}
+#endif
 
 class sum  {
 public:
@@ -32,13 +42,13 @@ int main()
     int b = 2;
     {
         boost::shared_ptr<sum> s(boost::factory<boost::shared_ptr<sum>,
-            std::allocator<char>,
+            boost::default_allocator<void>,
             boost::factory_alloc_for_pointee_and_deleter>()(a, b));
         BOOST_TEST(s->get() == 3);
     }
     {
         boost::shared_ptr<sum> s(boost::factory<boost::shared_ptr<sum>,
-            std::allocator<char>,
+            boost::default_allocator<void>,
             boost::factory_passes_alloc_to_smart_pointer>()(a, b));
         BOOST_TEST(s->get() == 3);
     }

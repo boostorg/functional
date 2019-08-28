@@ -16,9 +16,11 @@
         "boost-version": "1.43.0",
         "name": "Functional/Factory",
         "authors": [
+            "Glen Fernandes",
             "Tobias Schwinger"
         ],
         "maintainers": [
+            "Glen Fernandes <glenjofe -at- gmail.com>",
             "Tobias Schwinger <tschwinger -at- isonews2.com>"
         ],
         "description": "Function object templates for dynamic and static object creation",
