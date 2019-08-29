@@ -121,6 +121,16 @@ matrix:
             - ubuntu-toolchain-r-test
 
     - os: linux
+      compiler: g++-9
+      env: TOOLSET=gcc COMPILER=g++-9 CXXSTD=03,11,14,17,2a
+      addons:
+        apt:
+          packages:
+            - g++-9
+          sources:
+            - ubuntu-toolchain-r-test
+
+    - os: linux
       compiler: clang++
       env: TOOLSET=clang COMPILER=clang++ CXXSTD=03,11
 
@@ -244,7 +254,7 @@ matrix:
 
     - os: linux
       compiler: clang++-8
-      env: TOOLSET=clang COMPILER=clang++-8 STANDARD=03,11,14,17,2a
+      env: TOOLSET=clang COMPILER=clang++-8 CXXSTD=03,11,14,17,2a
       addons:
         apt:
           packages:

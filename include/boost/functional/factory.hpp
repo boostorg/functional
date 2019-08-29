@@ -10,10 +10,10 @@ Distributed under the Boost Software License, Version 1.0.
 #ifndef BOOST_FUNCTIONAL_FACTORY_HPP
 #define BOOST_FUNCTIONAL_FACTORY_HPP
 
+#include <boost/config.hpp>
 #include <boost/core/empty_value.hpp>
 #include <boost/core/pointer_traits.hpp>
 #include <boost/type_traits/remove_cv.hpp>
-#include <boost/config.hpp>
 #if !defined(BOOST_NO_CXX11_ALLOCATOR)
 #include <memory>
 #endif
@@ -141,14 +141,14 @@ public:
 private:
     typedef typename fc_pointer<A>::type pointer;
 
-    fc_allocate(const fc_allocate&);
-    fc_allocate& operator=(const fc_allocate&);
-
     pointer release() BOOST_NOEXCEPT {
         pointer p = p_;
         p_ = pointer();
         return p;
     }
+
+    fc_allocate(const fc_allocate&);
+    fc_allocate& operator=(const fc_allocate&);
 
     A a_;
     pointer p_;
