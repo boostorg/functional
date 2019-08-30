@@ -300,8 +300,8 @@ arbitrary number of arguments is supported.
 
 Function object template that dynamically constructs a pointee object for the
 type of pointer given as template argument. Smart pointers may be used for the
-template argument, given that `boost::pointee<Pointer>::type` yields the
-pointee type.
+template argument, given that `pointer_traits<Pointer>::element_type` yields
+the pointee type.
 
 If an __allocator__ is given, it is used for memory allocation and the
 placement form of the `new` operator is used to construct the object. A
