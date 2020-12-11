@@ -59,3 +59,4 @@ test_script:
   - ..\..\b2 forward/test toolset=%TOOLSET% %CXXSTD% %ADDRMD%
   - ..\..\b2 factory/test toolset=%TOOLSET% %CXXSTD% %ADDRMD%
   - ..\..\b2 overloaded_function/test toolset=%TOOLSET% %CXXSTD% %ADDRMD%
+
