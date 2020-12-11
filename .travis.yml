@@ -285,7 +285,7 @@ install:
   - git submodule update --init tools/boostdep
   - mkdir -p libs/functional
   - cp -r $TRAVIS_BUILD_DIR/* libs/functional
-  - python tools/boostdep/depinst/depinst.py functional
+  - python tools/boostdep/depinst/depinst.py -I forward/test -I factory/test -I overloaded_function/test functional
   - ./bootstrap.sh
   - ./b2 headers
 
