@@ -14,6 +14,7 @@
 
 #include <boost/config.hpp>
 #include <boost/call_traits.hpp>
+#include <boost/functional/identity.hpp>
 #include <functional>
 
 namespace boost

@@ -45,6 +45,9 @@ install:
   - cd boost
   - git submodule update --init tools/build
   - git submodule update --init libs/config
+  - git submodule update --init libs/move
+  - git submodule update --init libs/mpl
+  - git submodule update --init libs/container
   - git submodule update --init tools/boostdep
   - xcopy /s /e /q %APPVEYOR_BUILD_FOLDER% libs\functional\
   - python tools/boostdep/depinst/depinst.py -I forward/test -I factory/test -I overloaded_function/test functional

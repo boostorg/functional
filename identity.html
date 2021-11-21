@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Language" content="en-us">
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+
+  <title>Boost Function Object Adapter Library</title>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+  <table border="1" bgcolor="#007F7F" cellpadding="2" summary="">
+    <tr>
+      <td bgcolor="#FFFFFF"><img src="../../boost.png" alt=
+      "boost.png (6897 bytes)" width="277" height="86"></td>
+
+      <td><a href="../../index.htm"><font face="Arial" color=
+      "#FFFFFF"><big>Home</big></font></a></td>
+
+      <td><a href="../libraries.htm"><font face="Arial" color=
+      "#FFFFFF"><big>Libraries</big></font></a></td>
+
+      <td><a href="http://www.boost.org/people/people.htm"><font face="Arial" color=
+      "#FFFFFF"><big>People</big></font></a></td>
+
+      <td><a href="http://www.boost.org/more/faq.htm"><font face="Arial" color=
+      "#FFFFFF"><big>FAQ</big></font></a></td>
+
+      <td><a href="../../more/index.htm"><font face="Arial" color=
+      "#FFFFFF"><big>More</big></font></a></td>
+    </tr>
+  </table>
+
+  <h1>Identity</h1>
+
+  <p>The header <a href="../../boost/functional.hpp">functional.hpp</a>
+  provides a function object type whose <tt>operator()</tt> returns its argument unchanged:<br></p>
+
+  <ul>
+    <li><tt>identity</tt></li>
+  </ul>
+
+  <p>This is a C++03 implementation of C++20's <tt>std::identity</tt>.<br></p>
+
+  <h3>Usage</h3>
+
+  <p>Identity serves as the default projection in constrained algorithms. Its direct usage is usually not needed. For example,</p>
+
+  <blockquote>
+    <pre>
+template&lt;typename Projection = boost::identity&gt;
+struct projected_range_printer
+{
+    template&lt;typename Iterator&gt;
+    void print(Iterator b, Iterator e, Projection proj = Projection()) { ... }
+};
+...
+std::vector&lt;std::string&gt; c;
+...
+projected_range_printer&lt;&gt;().print(c.begin(), c.end());
+</pre>
+  </blockquote>
+
+  <h3>Argument And Return Types</h3>
+
+  <p>The "ISO/IEC 14882:2020" C++ Standard defines identity like this:</p>
+
+  <blockquote>
+    <pre>
+struct identity {
+  template&lt;class T&gt;
+  constexpr <strong>T&amp;&amp;</strong> operator()(<strong>T&amp;&amp;</strong> t) const noexcept;
+  using is_transparent = unspecified ;
+};
+</pre>
+  </blockquote>
+
+  <p></p>
+
+  <h3>Additional Types Defined</h3>
+
+  <h4><tt>is_transparent</tt></h4>
+
+  <p>This member type indicates to the caller that this function object is a <i>transparent</i> function object: it accepts arguments of arbitrary types and uses perfect forwarding(or its emulation in C++03), which avoids unnecessary copying and conversion when the function object is used in heterogeneous context, or with rvalue arguments. In particular, template functions such as <tt>std::set::find</tt> and <tt>std::set::lower_bound</tt> make use of this member type on their Compare types.</p>
+  <hr>
+
+  <p><a href="http://validator.w3.org/check?uri=referer"><img border="0" src=
+  "../../doc/images/valid-html401.png" alt="Valid HTML 4.01 Transitional"
+  height="31" width="88"></a></p>
+
+  <p>Revised 
+  <!--webbot bot="Timestamp" s-type="EDITED" s-format="%d %B, %Y" startspan -->02
+  December, 2006<!--webbot bot="Timestamp" endspan i-checksum="38510" --></p>
+
+  <p><i>Copyright &copy; 2000 Cadenza New Zealand Ltd.</i></p>
+
+  <p><i>Distributed under the Boost Software License, Version 1.0. (See
+  accompanying file <a href="../../LICENSE_1_0.txt">LICENSE_1_0.txt</a> or
+  copy at <a href=
+  "http://www.boost.org/LICENSE_1_0.txt">http://www.boost.org/LICENSE_1_0.txt</a>)</i></p>
+</body>
+</html>

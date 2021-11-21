@@ -282,6 +282,9 @@ install:
   - cd boost
   - git submodule update --init tools/build
   - git submodule update --init libs/config
+  - git submodule update --init libs/move
+  - git submodule update --init libs/mpl
+  - git submodule update --init libs/container
   - git submodule update --init tools/boostdep
   - mkdir -p libs/functional
   - cp -r $TRAVIS_BUILD_DIR/* libs/functional

@@ -129,6 +129,9 @@
 #include <iterator>
 #include <string>
 #include <vector>
+#include <boost/container/list.hpp>
+#include <boost/container/vector.hpp>
+#include <boost/container/string.hpp>
 
 class Person
 {
@@ -169,6 +172,16 @@ namespace
     {
         p.set_name(name);
     }
+
+    template<typename T1, typename T2>
+    void print (T1 const rem, T2 const& seq) {
+        std::cout << rem;
+        for (typename T2::const_iterator it=seq.begin();it!=seq.end();++it)
+        {
+            std::cout << *it << ' ';
+        }
+        std::cout << '\n';
+    };
 }
 
 int main()
@@ -328,6 +341,27 @@ int main()
     std::cout << '\n';
     std::transform(v1.begin(), v1.end(), std::ostream_iterator<std::string>(std::cout, " "),
                    boost::mem_fun_ref(&Person::clear_name));    
+
+    // identity
+    std::cout << '\n';
+    boost::container::list<boost::container::string> s;
+    s.push_back("one");
+    s.push_back("two");
+    s.push_back("three");
+
+    boost::container::vector<boost::container::string> v1;
+    std::transform(s.begin(), s.end(), std::back_inserter(v1), boost::identity()); // copy
+
+
+    boost::container::vector<boost::container::string> v2;
+    std::transform(boost::make_move_iterator(s.begin()),
+              boost::make_move_iterator(s.end()),
+              boost::back_move_inserter(v2),
+              boost::identity()); // move
+
+    print("v1 now holds: ", v1);
+    print("v2 now holds: ", v2);
+    print("original list now holds: ", s);
 
     std::cout << '\n';
     return 0;

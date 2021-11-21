@@ -15,6 +15,8 @@ target_include_directories(boost_functional INTERFACE include)
 target_link_libraries(boost_functional
   INTERFACE
     Boost::config
+    Boost::move
+    Boost::container
     Boost::core
     Boost::function
     Boost::function_types
