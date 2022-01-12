@@ -34,6 +34,26 @@ struct identity {
         return value;
     }
 #endif
+
+    template<class>
+    struct result { };
+
+    template<class T>
+    struct result<identity(T&)> {
+        typedef T& type;
+    };
+
+#if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
+    template<class T>
+    struct result<identity(T)> {
+        typedef T&& type;
+    };
+
+    template<class T>
+    struct result<identity(T&&)> {
+        typedef T&& type;
+    };
+#endif
 };
 
 } // boost
