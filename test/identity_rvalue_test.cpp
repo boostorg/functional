@@ -9,6 +9,8 @@ Distributed under the Boost Software License, Version 1.0.
 #if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
 #include <boost/functional/identity.hpp>
 #include <boost/core/lightweight_test.hpp>
+#include <boost/utility.hpp>
+#include <boost/type_traits/is_same.hpp>
 #include <algorithm>
 #include <iterator>
 #include <string>
@@ -61,10 +63,19 @@ void algorithm_test()
     BOOST_TEST(v3 == v1);
 }
 
+void result_of_test()
+{
+    BOOST_TEST(( boost::is_same<
+            boost::result_of< boost::identity(int&&) >::type, int&& >::value ));
+    BOOST_TEST(( boost::is_same<
+            boost::result_of< boost::identity(const int&&) >::type, const int&& >::value ));
+}
+
 int main()
 {
     simple_test();
     algorithm_test();
+    result_of_test();
     return boost::report_errors();
 }
 #else
