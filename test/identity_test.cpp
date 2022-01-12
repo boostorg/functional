@@ -7,8 +7,8 @@ Distributed under the Boost Software License, Version 1.0.
 */
 #include <boost/functional/identity.hpp>
 #include <boost/core/lightweight_test.hpp>
-#include <boost/utility.hpp>
 #include <boost/type_traits/is_same.hpp>
+#include <boost/utility/result_of.hpp>
 #include <algorithm>
 #include <iterator>
 #include <string>
