@@ -24,6 +24,18 @@ struct identity {
         return std::forward<T>(value);
     }
 #else
+    template<class> struct result;
+
+    template<class F, class T>
+    struct result<F(const T&)> {
+        typedef const T& type;
+    };
+
+    template<class F, class T>
+    struct result<F(T&)> {
+        typedef T& type;
+    };
+
     template<class T>
     BOOST_CONSTEXPR const T& operator()(const T& value) const BOOST_NOEXCEPT {
         return value;
