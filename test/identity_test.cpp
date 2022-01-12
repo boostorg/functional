@@ -72,6 +72,13 @@ void result_of_test()
             boost::result_of< boost::identity(int&) >::type, int& >::value ));
     BOOST_TEST(( boost::is_same<
             boost::result_of< boost::identity(const int&) >::type, const int& >::value ));
+#if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
+    BOOST_TEST(( boost::is_same<
+            boost::result_of< boost::identity(int) >::type, int&& >::value ));
+#else
+    BOOST_TEST(( boost::is_same<
+            boost::result_of< boost::identity(int) >::type, const int& >::value ));
+#endif
 }
 
 int main()
