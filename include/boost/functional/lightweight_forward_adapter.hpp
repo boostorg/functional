@@ -20,7 +20,7 @@
 #   include <boost/preprocessor/facilities/intercept.hpp>
 
 #   include <boost/utility/result_of.hpp>
-#   include <boost/ref.hpp>
+#   include <boost/core/ref.hpp>
 
 #   ifndef BOOST_FUNCTIONAL_LIGHTWEIGHT_FORWARD_ADAPTER_MAX_ARITY
 #     define BOOST_FUNCTIONAL_LIGHTWEIGHT_FORWARD_ADAPTER_MAX_ARITY 10
