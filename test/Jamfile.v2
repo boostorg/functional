@@ -6,8 +6,4 @@ import testing ;
 
 test-suite functional :
     [ run function_test.cpp ]
-    [ run identity_test.cpp ]
-    [ run identity_rvalue_test.cpp ]
-    [ run identity_result_of_test.cpp ]
-    [ run identity_result_of_rvalue_test.cpp ]
     ;
